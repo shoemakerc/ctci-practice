@@ -1,3 +1,11 @@
+/*
+MinimalTree.java
+Problem #4.2
+From Cracking the Code Interview, 6th Edition
+
+Given a sorted increasing-order array with unique integer elements, creates a BST of minimal height
+*/
+
 class TreeNode {
   public int value;
   public TreeNode left;
@@ -8,7 +16,7 @@ class TreeNode {
   }
 
   public TreeNode(int n) {
-    value = n;
+    this.value = n;
   }
 
   public static TreeNode createMinimalBST(int array[]) {
@@ -26,7 +34,6 @@ class TreeNode {
     return n;
   }
 
-  // Method to print out nodes in BST in order
   public static void inOrderTraversal(TreeNode node) {
     if (node != null) {
       inOrderTraversal(node.left);
@@ -34,16 +41,46 @@ class TreeNode {
       inOrderTraversal(node.right);
     }
   }
+
+  public static void preOrderTraversal(TreeNode node) {
+    if (node != null) {
+      System.out.print(node.value + ", ");
+      preOrderTraversal(node.left);
+      preOrderTraversal(node.right);
+    }
+  }
+
+    public static void postOrderTraversal(TreeNode node) {
+    if (node != null) {
+      postOrderTraversal(node.left);
+      postOrderTraversal(node.right);
+      System.out.print(node.value + ", ");
+    }
+  }
 }
 
 class MinimalTree {
   public static void main(String[] args) {
-    int[] testArray = {1, 2, 3, 4, 5, 6, 7, 8};
+    int[] testArray = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     TreeNode minBST = new TreeNode();
     minBST = minBST.createMinimalBST(testArray);
-    System.out.print("[");
+
+    // Testing w/ in-order traversal
+    System.out.print("In-order traversal: [");
     TreeNode.inOrderTraversal(minBST);
     // Delete extraneous whitespace and comma
-    System.out.print("\b\b]");
+    System.out.print("\b\b]\n");
+
+    // Testing w/ pre-order traversal
+    System.out.print("Pre-order traversal: [");
+    TreeNode.preOrderTraversal(minBST);
+    // Delete extraneous whitespace and comma
+    System.out.print("\b\b]\n");
+
+    // Testing w/ post-order traversal
+    System.out.print("Post-order traversal: [");
+    TreeNode.postOrderTraversal(minBST);
+    // Delete extraneous whitespace and comma
+    System.out.print("\b\b]\n");
   }
 }
