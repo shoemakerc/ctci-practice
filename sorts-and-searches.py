@@ -12,30 +12,44 @@ def binarySearchHelper(arr, target, lo, hi):
 	else:
 		return binarySearchHelper(arr, target, 0, mid - 1)
 
+'''
+## BUBBLE SORT ##
+def bubbleSort(arr):
+	n = len(arr)
+	while n > 0:
+		
+	pass
+'''
 ## INSERTION SORT ##
 def insertionSort(arr):
 	for i in range(1, len(arr)):
-		x = arr[i]
+		n = arr[i]
 		j = i - 1
-		while j >= 0 and arr[j] > x:
+		while j >= 0 and arr[j] > n:
 			arr[j + 1] = arr[j]
 			j = j - 1
-		arr[j + 1] = x
+		arr[j + 1] = n
 	return arr
 
-## SELECTION SORT (w/ swap) ##
+## SELECTION SORT ##
 def selectionSort(arr):
 	for i in range(len(arr)):
 		min = i
 		for j in range(i + 1, len(arr)):
 			if arr[j] < arr[min]:
 				min = j
-		swap(arr, min, i)
+		arr[min], arr[i] = arr[i], arr[min]
 	return arr
-def swap(arr, x, y):
-	temp = arr[x]
-	arr[x] = arr[y]
-	arr[y] = temp
+
+## MERGE SORT ##
+def mergeSort(arr):
+	pass
+def merge():
+	pass
+
+## RADIX SORT ##
+def radixSort(arr):
+	pass
 
 '''
 ## BEST SORT ##
