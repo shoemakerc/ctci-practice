@@ -12,14 +12,19 @@ def binarySearchHelper(arr, target, lo, hi):
 	else:
 		return binarySearchHelper(arr, target, 0, mid - 1)
 
-'''
+
 ## BUBBLE SORT ##
 def bubbleSort(arr):
 	n = len(arr)
 	while n > 0:
-		
-	pass
-'''
+		new = 0
+		for i in range(1, n):
+			if arr[i - 1] > arr[i]:
+				arr[i - 1], arr[i] = arr[i], arr[i - 1]
+				new = i
+		n = new
+	return arr
+
 ## INSERTION SORT ##
 def insertionSort(arr):
 	for i in range(1, len(arr)):
@@ -69,6 +74,7 @@ def main():
 	print("Unsorted array after insertion sort:", insertionSort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4])) # these long inputs...damn you, side effects!
 	print("Unsorted array after selection sort:", selectionSort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4]))
 	#print("Unsorted array after bogosort:", bogoSort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4]))
+	print("Unsorted array after bubble sort:", bubbleSort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4]))
 	index = binarySearch(searchArr, 8)
 	if index < 0:
 		print("Error: Element not found at any index")
