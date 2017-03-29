@@ -78,8 +78,21 @@ def merge(left, right):
 	return result
 
 ## QUICK SORT ##
-def quickSort(arr):
-	pass
+def quickSort(arr, lo, hi):
+	if lo < hi:
+		p = partition(arr, lo, hi)
+		quickSort(A, lo, p - 1)
+		quickSort(A, p + 1, hi)
+	return arr
+def partition(arr, lo, hi):
+	pivot = arr[hi]
+	i = lo - 1
+	for j in range(lo, hi - 1):
+		if arr[j] <= pivot:
+			i += 1
+			arr[i], arr[j] = arr[j], arr[i]
+	arr[i + 1], arr[hi] = arr[hi], arr[i + 1]
+	return i + 1
 
 '''
 ## BEST SORT ##
@@ -101,6 +114,7 @@ def main():
 	#print("Unsorted array after bogosort:", bogoSort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4]))
 	print("Unsorted array after bubble sort:", bubbleSort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4]))
 	print("Unsorted array after merge sort:", mergeSort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4]))
+	#print("Unsorted array after quick sort:", quickSort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4], 0, len([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4])))
 	index = binarySearch(searchArr, 8)
 	if index < 0:
 		print("Error: Element not found at any index")
