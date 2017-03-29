@@ -48,12 +48,37 @@ def selectionSort(arr):
 
 ## MERGE SORT ##
 def mergeSort(arr):
-	pass
-def merge():
-	pass
+	if len(arr) == 1:
+		return arr
+	left = []
+	right = []
+	for i in range(len(arr)):
+		if i < (len(arr))/2:
+			left.append(arr[i])
+		else:
+			right.append(arr[i])
+	left = mergeSort(left)
+	right = mergeSort(right)
+	return merge(left, right)
+def merge(left, right):
+	result = []
+	while len(left) != 0 and len(right) != 0:
+		if left[0] <= right[0]:
+			result.append(left[0])
+			left = left[1:]
+		else:
+			result.append(right[0])
+			right = right[1:]
+	while len(left) != 0:
+		result.append(left[0])
+		left = left[1:]
+	while len(right) != 0:
+		result.append(right[0])
+		right = right[1:]
+	return result
 
-## RADIX SORT ##
-def radixSort(arr):
+## QUICK SORT ##
+def quickSort(arr):
 	pass
 
 '''
@@ -75,6 +100,7 @@ def main():
 	print("Unsorted array after selection sort:", selectionSort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4]))
 	#print("Unsorted array after bogosort:", bogoSort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4]))
 	print("Unsorted array after bubble sort:", bubbleSort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4]))
+	print("Unsorted array after merge sort:", mergeSort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4]))
 	index = binarySearch(searchArr, 8)
 	if index < 0:
 		print("Error: Element not found at any index")
