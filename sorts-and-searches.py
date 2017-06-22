@@ -1,4 +1,11 @@
-from random import shuffle
+'''
+sorts-and-searches.py
+
+Just a bunch of different sorting and searching algorithms. To be
+added onto and reviewed for practice purposes
+
+'''
+from random import shuffle # For the best sorting algorithm ever
 
 ## BINARY SEARCH ##
 def binarySearchHelper(arr, target, lo, hi):
