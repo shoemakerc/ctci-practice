@@ -21,7 +21,7 @@ def binary_search(arr, target):
             return binary_search(arr[:mid], target)
 
 ## BUBBLE SORT ##
-def bubbleSort(arr):
+def bubble_sort(arr):
     n = len(arr)
     while n > 0:
         new = 0
@@ -54,7 +54,7 @@ def selectionSort(arr):
     return arr
 
 ## MERGE SORT ##
-def mergeSort(arr):
+def merge_sort(arr):
     if len(arr) == 1:
         return arr
     left = []
@@ -64,8 +64,8 @@ def mergeSort(arr):
             left.append(arr[i])
         else:
             right.append(arr[i])
-    left = mergeSort(left)
-    right = mergeSort(right)
+    left = merge_sort(left)
+    right = merge_sort(right)
     return merge(left, right)
 def merge(left, right):
     result = []
@@ -85,23 +85,31 @@ def merge(left, right):
     return result
 
 ## QUICK SORT ##
-def quickSort(arr, lo, hi):
+def quicksort(arr):
+    return quicksort_helper(arr, 0, len(arr) - 1)
+def quicksort_helper(arr, lo, hi):
     if lo < hi:
         split = partition(arr, lo, hi)
-        quickSort(A, lo, split - 1)
-        quickSort(A, split + 1, hi)
+        quicksort_helper(arr, lo, split - 1)
+        quicksort_helper(arr, split + 1, hi)
     return arr
 def partition(arr, lo, hi):
     '''Assume first value is pivot'''
     pivot = arr[lo]
     left = lo + 1
     right = hi
-    for j in range(lo, hi - 1):
-        if arr[j] <= pivot:
-            i += 1
-            arr[i], arr[j] = arr[j], arr[i]
-    arr[i + 1], arr[hi] = arr[hi], arr[i + 1]
-    return i + 1
+    done = False
+    while not done:
+        while left <= right and arr[left] <= pivot:
+            left += 1
+        while arr[right] >= pivot and right >= left:
+            right -= 1
+        if right < left:
+            done = True
+        else:
+            arr[left], arr[right] = arr[right], arr[left]
+    arr[lo], arr[right] = arr[right], arr[lo]
+    return right
 
 '''
 ## BEST SORT ##
@@ -117,10 +125,9 @@ def main():
     print("Unsorted array is:", [2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4])
     print("Unsorted array after insertion sort:", insertionSort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4])) # these long inputs...damn you, side effects!
     print("Unsorted array after selection sort:", selectionSort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4]))
-    #print("Unsorted array after bogosort:", bogoSort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4]))
-    print("Unsorted array after bubble sort:", bubbleSort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4]))
-    print("Unsorted array after merge sort:", mergeSort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4]))
-    #print("Unsorted array after quick sort:", quickSort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4], 0, len([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4])))
+    print("Unsorted array after bubble sort:", bubble_sort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4]))
+    print("Unsorted array after merge sort:", merge_sort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4]))
+    print("Unsorted array after quicksort:", quicksort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4]))
     print(binary_search(searchArr, 8))
     print(binary_search(searchArr, 4))
 main()
