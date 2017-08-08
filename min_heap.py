@@ -50,7 +50,7 @@ class MinHeap:
     self.heapList = [0] + arr
     while (i > 0):
       self.heapifyDown(i)
-      i -= 1
+      i -= 1  
 
 def main():
   h = MinHeap()

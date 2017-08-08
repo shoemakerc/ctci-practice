@@ -8,7 +8,7 @@ added onto and reviewed for practice purposes
 from random import shuffle # For the best sorting algorithm ever
 
 ## BINARY SEARCH ##
-def binarySearch(arr, target):
+def binary_search(arr, target):
     if len(arr) == 0:
         return -1
     else:
@@ -16,9 +16,9 @@ def binarySearch(arr, target):
         if target == arr[mid]:
             return mid
         elif target > arr[mid]:
-            return binarySearch(arr[mid + 1:], target)
+            return binary_search(arr[mid + 1:], target)
         else:
-            return binarySearch(arr[:mid], target)
+            return binary_search(arr[:mid], target)
 
 ## BUBBLE SORT ##
 def bubbleSort(arr):
@@ -35,12 +35,12 @@ def bubbleSort(arr):
 ## INSERTION SORT ##
 def insertionSort(arr):
     for i in range(1, len(arr)):
-        n = arr[i]
-        j = i - 1
-        while j >= 0 and arr[j] > n:
-            arr[j + 1] = arr[j]
+        curr = arr[i]
+        j = i
+        while j > 0 and arr[j - 1] > curr:
+            arr[j] = arr[j - 1]
             j = j - 1
-        arr[j + 1] = n
+        arr[j] = curr
     return arr
 
 ## SELECTION SORT ##
@@ -87,13 +87,15 @@ def merge(left, right):
 ## QUICK SORT ##
 def quickSort(arr, lo, hi):
     if lo < hi:
-        p = partition(arr, lo, hi)
-        quickSort(A, lo, p - 1)
-        quickSort(A, p + 1, hi)
+        split = partition(arr, lo, hi)
+        quickSort(A, lo, split - 1)
+        quickSort(A, split + 1, hi)
     return arr
 def partition(arr, lo, hi):
-    pivot = arr[hi]
-    i = lo - 1
+    '''Assume first value is pivot'''
+    pivot = arr[lo]
+    left = lo + 1
+    right = hi
     for j in range(lo, hi - 1):
         if arr[j] <= pivot:
             i += 1
@@ -119,6 +121,6 @@ def main():
     print("Unsorted array after bubble sort:", bubbleSort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4]))
     print("Unsorted array after merge sort:", mergeSort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4]))
     #print("Unsorted array after quick sort:", quickSort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4], 0, len([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4])))
-    print(binarySearch(searchArr, 8))
-    print(binarySearch(searchArr, 4))
+    print(binary_search(searchArr, 8))
+    print(binary_search(searchArr, 4))
 main()
