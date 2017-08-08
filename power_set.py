@@ -12,6 +12,6 @@ def generate_power_set(input):
 	return power_set
 
 def main():
-	input = [0, 1, 2]
+	input = []
 	print(generate_power_set(input))
 main()
