@@ -59,34 +59,35 @@ def selection_sort(arr):
 
 ## MERGE SORT ##
 def merge_sort(arr):
-    if len(arr) == 1:
-        return arr
-    left = []
-    right = []
-    for i in range(len(arr)):
-        if i < (len(arr))/2:
-            left.append(arr[i])
+    helper = [0] * len(arr)
+    return merge_sort_helper(arr, helper, 0, len(arr) - 1)
+def merge_sort_helper(arr, helper, lo, hi):
+    if lo < hi:
+        mid = (lo + hi) // 2
+        merge_sort_helper(arr, helper, lo, mid)
+        merge_sort_helper(arr, helper, mid + 1, hi)
+        arr = merge(arr, helper, lo, mid, hi)
+    return arr
+def merge(arr, helper, lo, mid, hi):
+    for i in range(lo, hi + 1):
+        helper[i] = arr[i]
+
+    helperLeft = lo
+    helperRight = mid + 1
+    curr = lo
+
+    while helperLeft <= mid and helperRight <= hi:
+        if helper[helperLeft] <= helper[helperRight]:
+            arr[curr] = helper[helperLeft]
+            helperLeft += 1
         else:
-            right.append(arr[i])
-    left = merge_sort(left)
-    right = merge_sort(right)
-    return merge(left, right)
-def merge(left, right):
-    result = []
-    while len(left) != 0 and len(right) != 0:
-        if left[0] <= right[0]:
-            result.append(left[0])
-            left = left[1:]
-        else:
-            result.append(right[0])
-            right = right[1:]
-    while len(left) != 0:
-        result.append(left[0])
-        left = left[1:]
-    while len(right) != 0:
-        result.append(right[0])
-        right = right[1:]
-    return result
+            arr[curr] = helper[helperRight]
+            helperRight += 1
+        curr += 1
+    remaining = mid - helperLeft
+    for i in range(remaining + 1):
+        arr[curr + i] = helper[helperLeft + i]
+    return arr
 
 ## QUICK SORT ##
 def quicksort(arr):
