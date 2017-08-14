@@ -15,24 +15,29 @@ class LinkedList:
         badNode.data = newNext.data
         badNode.next = badNode.next.next
     def deleteDups(self):
-        if self.head:
-            d = {}
-            d[self.head.data] = 1
-            n = self.head
-            prev = Node()
-            while n:
-                if n.data in d:
-                    prev.next = n.next
-                else:
-                    d[n.data] = 1
-                    prev = n
-                n = n.next
+        if not self.head:
+            return
+
+        d = {}
+        n = self.head
+        d[n.data] = 1
+        n = n.next
+        prev = Node()
+        while n:
+            if n.data in d:
+                print("Removing", n.data)
+                prev.next = n.next
+            else:
+                d[n.data] = 1
+                prev = n
+            n = n.next
     def printNodes(self):
-        if self.head:
-            n = self.head
-            while n:
-                print(n.getData())
-                n = n.next
+        if not self.head:
+            return
+        n = self.head
+        while n:
+            print(n.getData())
+            n = n.next
 class Node:
     def __init__(self, data=None):
         self.data = data
@@ -48,6 +53,7 @@ class Node:
 
 def main():
     llist = LinkedList(Node(2))
+    llist.appendToTail(2)
     llist.appendToTail(3)
     llist.appendToTail(4)
     llist.appendToTail(1)
@@ -61,7 +67,10 @@ def main():
     llist.appendToTail(9)
     llist.appendToTail(9)
     llist.printNodes()
-    print("\n")
+    print("")
     llist.deleteDups()
-    llist.printNodes()
+    ar = []
+    while llist:
+        ar.append(llist.head.getData())
+        llist.head = llist.head.next
 main()
