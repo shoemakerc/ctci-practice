@@ -34,6 +34,21 @@ class LinkedList:
         while n:
             print(n.getData())
             n = n.next
+    def partition(self, n):
+        if not self.head or not self.head.next:
+            return
+        ptr1 = self.head
+        ptr2 = self.head.next
+        done = False
+        while not done:
+            while ptr1 and ptr1.data < n:
+                ptr1 = ptr1.next
+            while ptr2 and ptr2.data >= n:
+                ptr2 = ptr2.next
+            if not ptr1 or not ptr2:
+                done = True
+            else:
+                ptr1.data, ptr2.data = ptr2.data, ptr1.data
 class Node:
     def __init__(self, data=None):
         self.data = data
@@ -48,22 +63,33 @@ class Node:
         self.next = newNext
 
 def main():
-    llist = LinkedList(Node(1))
+    llist = LinkedList(Node(5))
+    llist.appendToTail(4)
+    llist.appendToTail(4)
+    llist.appendToTail(4)
     llist.appendToTail(1)
-    llist.appendToTail(2)
-    llist.appendToTail(2)
-    llist.appendToTail(2)
-    llist.appendToTail(3)
-    llist.appendToTail(3)
     llist.appendToTail(3)
     llist.appendToTail(3)
     llist.appendToTail(4)
+    '''
     llist.appendToTail(4)
     llist.appendToTail(4)
     llist.appendToTail(4)
     llist.appendToTail(5)
+    '''
     llist.printNodes()
     print("")
+    llist.partition(3)
+    llist.printNodes()
+    print('')
     llist.deleteDups()
     llist.printNodes()
+    print('')
+    llist2 = LinkedList(Node(2))
+    llist2.appendToTail(1)
+    llist2.appendToTail(4)
+    llist2.appendToTail(4)  
+    print('')
+    llist2.partition(3)
+    llist2.printNodes()
 main()

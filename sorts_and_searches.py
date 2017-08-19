@@ -25,6 +25,8 @@ def binary_search_helper(arr, target, lo, hi):
         return binary_search_helper(arr, target, mid + 1, hi)
 
 ## BUBBLE SORT ##
+# Time complexity: O(n^2)
+# Space complexity: O(1)
 def bubble_sort(arr):
     n = len(arr)
     while n > 0:
@@ -37,6 +39,8 @@ def bubble_sort(arr):
     return arr
 
 ## INSERTION SORT ##
+# Time complexity: O(n^2)
+# Space complexity: O(1)
 def insertion_sort(arr):
     for i in range(1, len(arr)):
         curr = arr[i]
@@ -135,7 +139,7 @@ def bogosort(arr):
 def main():
     searchArr = [1, 3, 5, 7, 9]
     print("Unsorted array is:", [2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4])
-    print("Unsorted array after insertion sort:", insertion_sort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4])) # these long inputs...damn you, side effects!
+    print("Unsorted array after insertion sort:", insertion_sort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4]))
     print("Unsorted array after selection sort:", selection_sort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4]))
     print("Unsorted array after bubble sort:", bubble_sort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4]))
     print("Unsorted array after merge sort:", merge_sort([2, 5, 2, 4, 12, 5, 1, 5, 8, 9, 44, 2, 1243, 6, 6, 3, 4]))
